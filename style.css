@@ -1,256 +1,75 @@
-* {
-    text-decoration: none;
-    margin: 0px;
-    padding: 0px;
-}
-
 body {
-    margin: 0px;
-    padding: 0px;
-    font-family: 'Open Sans',sans-serif;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
-
-.wrapper {
-    width: 1100px;
-    margin: auto;
-    position: relative;
+.topbar {
+  background: #00AEEF;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
 }
-
-.logo a {
-    font-size: 50px;
-    font-weight: 800;
-    float: left;
-    font-family: courier;
-    color: #364f6b;
-}
-
-.menu {
-    float: right;
-}
-
 nav {
-    width: 100%;
-    margin: auto;
-    display: flex;
-    line-height: 80px;
-    position: sticky;
-    position: -webkit-sticky; 
-    top: 0;
-    background: #FFFFFF;
-    z-index: 1;
-    border-bottom:1px solid #364f6b;
+  background: #1c1c1c;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
 }
-
+nav h2 {
+  margin: 0;
+}
 nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  list-style: none;
+  display: flex;
+  gap: 15px;
 }
-
-nav ul li {
-    float: left;
+nav a {
+  color: white;
+  text-decoration: none;
 }
-
-nav ul li a {
-    color: black;
-    font-weight: bold;
-    text-align: center;
-    padding: 0px 16px 0px 16px;
-    text-decoration: none;
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  background: #f0f0f0;
 }
-
-nav ul li a:hover {
-    text-decoration: underline;
+.hero-text {
+  max-width: 50%;
 }
-
-section {
-    margin: auto;
-    display: flex;
-    margin-bottom: 50px;
+.hero img {
+  max-width: 45%;
 }
-
-.kolom {
-    margin-top: 50px;
-    margin-bottom: 50px;
+.btn-primary, .btn-secondary {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
 }
-
-.kolom .deskripsi {
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'comic sans ms';
-    color: #364f6b;
+.btn-primary {
+  background: #00AEEF;
+  color: white;
 }
-
-h2 {
-    font-family: 'comic sans ms';
-    font-weight: 800;
-    font-size: 45px;
-    margin-bottom: 20px;
-    color: #364f6b;
-    width: 100%;
-    line-height: 50px;
+.btn-secondary {
+  background: #1c1c1c;
+  color: white;
 }
-
-a.tbl-biru {
-    background: #3f72af;
-    border-radius: 20px;
-    margin-top: 20px;
-    padding: 15px 20px 15px 20px;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-weight: bold;
+.services {
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
 }
-
-a.tbl-biru:hover {
-    background: #fc5185;
-    text-decoration: none;
+.service-box {
+  width: 30%;
+  background: #fff;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 0 5px #ccc;
 }
-
-a.tbl-pink {
-    background: #fc5185;
-    border-radius: 20px;
-    margin-top: 20px;
-    padding: 15px 20px 15px 20px;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-a.tbl-pink:hover {
-    background: #3f72af;
-    text-decoration: none;
-}
-
-p {
-    margin: 10px 0px 10px 0px;
-    padding: 10px 0px 10px 0px;
-}
-
-.tengah {
-    text-align: center;
-    width: 100%;
-}
-
-.tutor-list {
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.kartu-tutor {
-    width: 20%;
-    margin: 0 auto;
-}
-
-.kartu-tutor img {
-    width: 80%;
-    border-radius: 50%;
-}
-
-.kartu-tutor p {
-    font-family: 'comic sans ms';
-    font-weight: 800;
-    font-size: 25px;
-    text-align: center;
-    color: #364f6b;
-}
-
-.partner-list {
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.kartu-partner {
-    width: 20%;
-    margin: 0 auto;
-}
-
-.kartu-partner img {
-    width: 150px;
-    border-radius: 50%;
-}
-
-#contact {
-    background: #dedede;
-    padding:50px 0px 50px 0px;
-}
-
-.footer {
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    margin: auto;
-}
-
-.footer-section {
-    width: 20%;
-    margin: 0 auto;
-}
-
-h3 {
-    font-family: 'comic sans ms';
-    font-weight: 800;
-    font-size: 30px;
-    margin-bottom: 20px;
-    color: #364f6b;
-    width: 100%;
-    line-height: 50px;
-}
-
-#copyright {
-    text-align: center;
-    width: 100%;
-    padding: 50px 0px 50px 0px;
-    margin-top: 50px;
-}
-
-@media screen and (max-width: 991.98px) {
-    .wrapper {
-        width: 90%;
-    }
-
-    .logo a {
-        display: block;
-        width: 100%;
-        text-align: center;
-    }
-
-    nav .menu {
-        width: 100%;
-        margin: 0;
-    }
-
-    nav .menu ul {
-        text-align: center;
-        margin: auto;
-        line-height: 60px;
-    }
-
-    nav .menu ul li {
-        display: inline-block;
-        float: none;
-    }
-
-    section {
-        display: block;
-    }
-
-    section img {
-        display: block;
-        width: 100%;
-        height: auto;
-    }
-
-    .kartu-tutor {
-        width: 50%;
-    }
-
-    .kartu-partner {
-        width: 50%;
-    }
+.login-status {
+  text-align: right;
+  padding: 10px 30px;
 }
