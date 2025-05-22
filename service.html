@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Elektronik | ArtService</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f8fa;
+      padding: 30px;
+    }
+    .breadcrumb {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .breadcrumb a {
+      color: #555;
+      text-decoration: none;
+    }
+    .breadcrumb span {
+      margin: 0 5px;
+      color: #999;
+    }
+    h1, h2 {
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: #555;
+      margin-bottom: 25px;
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .category-box {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    .category-box:hover {
+      border-color: #007BFF;
+      background: #eaf3ff;
+    }
+    .category-box img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+    .technician-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .tech-box {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .tech-box img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 3px solid #007bff30;
+    }
+    .tech-box h3 {
+      margin: 5px 0;
+      color: #007BFF;
+    }
+    .tech-box .stars {
+      color: #ffc107;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    .tech-box p {
+      font-size: 14px;
+      color: #555;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="breadcrumb">
+    <a href="#">Home</a> <span>&gt;</span>
+    <a href="#">Service</a> <span>&gt;</span>
+    <strong>Teknisi</strong>
+  </div>
+
+  <h1>Temukan Teknisi Profesional</h1>
+  <p class="subtitle">Pilih kategori atau scroll untuk melihat semua teknisi.</p>
+
+  <div class="category-grid">
+    <div class="category-box" onclick="filterTechs('all')">
+      <img src="https://img.icons8.com/fluency/96/categorize.png" />
+      <p>Semua</p>
+    </div>
+    <div class="category-box" onclick="filterTechs('kulkas')">
+      <img src="https://img.icons8.com/fluency/96/fridge.png" />
+      <p>Kulkas</p>
+    </div>
+    <div class="category-box" onclick="filterTechs('ac')">
+      <img src="https://img.icons8.com/fluency/96/air-conditioner.png" />
+      <p>AC</p>
+    </div>
+    <div class="category-box" onclick="filterTechs('mesin_cuci')">
+      <img src="https://img.icons8.com/fluency/96/washing-machine.png" />
+      <p>Mesin Cuci</p>
+    </div>
+    <div class="category-box" onclick="filterTechs('tv')">
+      <img src="https://img.icons8.com/fluency/96/tv.png" />
+      <p>TV</p>
+    </div>
+    <div class="category-box" onclick="filterTechs('laptop')">
+      <img src="https://img.icons8.com/fluency/96/laptop.png" />
+      <p>Laptop</p>
+    </div>
+  </div>
+
+  <h2>Semua Teknisi</h2>
+  <div class="technician-grid" id="techList">
+    <div class="tech-box" data-kategori="kulkas">
+      <img src="https://randomuser.me/api/portraits/men/10.jpg">
+      <h3>Budi Santoso</h3>
+      <div class="stars">★★★★★</div>
+      <p>Spesialis Kulkas - Jakarta</p>
+    </div>
+    <div class="tech-box" data-kategori="ac">
+      <img src="https://randomuser.me/api/portraits/men/11.jpg">
+      <h3>Agus Pratama</h3>
+      <div class="stars">★★★★☆</div>
+      <p>Spesialis AC - Depok</p>
+    </div>
+    <div class="tech-box" data-kategori="mesin_cuci">
+      <img src="https://randomuser.me/api/portraits/women/12.jpg">
+      <h3>Sari Amelia</h3>
+      <div class="stars">★★★★★</div>
+      <p>Spesialis Mesin Cuci - Bandung</p>
+    </div>
+    <div class="tech-box" data-kategori="tv">
+      <img src="https://randomuser.me/api/portraits/men/13.jpg">
+      <h3>Wawan Saputra</h3>
+      <div class="stars">★★★☆☆</div>
+      <p>Spesialis TV - Tangerang</p>
+    </div>
+    <div class="tech-box" data-kategori="laptop">
+      <img src="https://randomuser.me/api/portraits/women/14.jpg">
+      <h3>Vita Oktaviani</h3>
+      <div class="stars">★★★★★</div>
+      <p>Spesialis Laptop - Bekasi</p>
+    </div>
+    <div class="tech-box" data-kategori="ac">
+      <img src="https://randomuser.me/api/portraits/men/15.jpg">
+      <h3>Bayu Fadillah</h3>
+      <div class="stars">★★★★☆</div>
+      <p>Spesialis AC - Bogor</p>
+    </div>
+  </div>
+
+  <script>
+    function filterTechs(kategori) {
+      const boxes = document.querySelectorAll('.tech-box');
+      boxes.forEach(box => {
+        if (kategori === 'all' || box.dataset.kategori === kategori) {
+          box.classList.remove('hidden');
+        } else {
+          box.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
