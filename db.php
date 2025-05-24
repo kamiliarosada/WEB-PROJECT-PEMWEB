@@ -1,12 +1,6 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "repairplus_db";
-
-$conn = mysqli_connect($host, $user, $pass, $db);
-
-if (!$conn) {
-    die("Koneksi gagal: " . mysqli_connect_error());
+$conn = new mysqli("localhost", "root", "", "reparo");
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
 }
 ?>
