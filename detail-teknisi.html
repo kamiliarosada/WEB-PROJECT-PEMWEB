@@ -86,150 +86,224 @@
     }
 
     .review-section {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #ddd;
-}
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+    }
 
-.review-card {
-  background-color: #f0f4ff;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
+    .review-card {
+      background-color: #f0f4ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
 
-.review-card .stars {
-  color: #ffc107;
-  font-size: 16px;
-}
+    .review-card .stars {
+      color: #ffc107;
+      font-size: 16px;
+    }
 
-.review-card small {
-  color: #666;
-  font-size: 12px;
-}
+    .review-card small {
+      color: #666;
+      font-size: 12px;
+    }
 
-.btn-rating {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 15px;
-  background-color: #007BFF;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-}
+    .btn-rating {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 15px;
+      background-color: #007BFF;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
 
+    /* Styling for the list of technicians */
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .tech-box {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .tech-box:hover {
+      transform: scale(1.05);
+    }
+
+    .tech-box img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      object-fit: cover;
+    }
+
+    .tech-box h3 {
+      margin: 10px 0;
+      color: #007BFF;
+    }
+
+    .tech-box .stars {
+      color: #ffc107;
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    .tech-box p {
+      font-size: 14px;
+      color: #555;
+    }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="profile">
-    <img id="foto" src="" alt="Foto Teknisi">
-    <h2 id="nama">Nama Teknisi</h2>
-    <div class="stars" id="rating">★★★★★</div>
-    <p class="desc" id="deskripsi">
-      Deskripsi teknisi akan muncul di sini...
-    </p>
+  <div class="container">
+    <div class="profile">
+      <img id="foto" src="" alt="Foto Teknisi">
+      <h2 id="nama">Nama Teknisi</h2>
+      <div class="stars" id="rating">★★★★★</div>
+      <p class="desc" id="deskripsi">
+        Deskripsi teknisi akan muncul di sini...
+      </p>
+    </div>
+
+    <div class="buttons">
+      <button onclick="toggleForm('konsultasi')">Konsultasi</button>
+      <button onclick="toggleForm('booking')">Booking</button>
+    </div>
+
+    <div class="form-section" id="form-konsultasi">
+      <h3>Form Konsultasi</h3>
+      <form>
+        <label>Nama</label>
+        <input type="text" required>
+        <label>No. HP</label>
+        <input type="text" required>
+        <label>Pesan</label>
+        <textarea rows="4" required></textarea>
+        <input type="submit" value="Kirim Konsultasi">
+      </form>
+    </div>
+
+    <div class="form-section" id="form-booking">
+      <h3>Form Booking</h3>
+      <form>
+        <label>Nama</label>
+        <input type="text" required>
+        <label>No. HP</label>
+        <input type="text" required>
+        <label>Alamat</label>
+        <textarea rows="2" required></textarea>
+        <label>Barang yang ingin diperbaiki</label>
+        <input type="text" required>
+        <input type="submit" value="Pesan Teknisi">
+      </form>
+    </div>
   </div>
 
-  <div class="buttons">
-    <button onclick="toggleForm('konsultasi')">Konsultasi</button>
-    <button onclick="toggleForm('booking')">Booking</button>
+  <div class="review-section">
+    <h3>Ulasan Pengguna</h3>
+
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p>"Teknisinya sangat cepat dan komunikatif, AC saya langsung normal!"</p>
+      <small>– Andi, 28 Mei 2025</small>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"Servis kulkasnya bagus dan harganya terjangkau."</p>
+      <small>– Rina, 26 Mei 2025</small>
+    </div>
+
+    <a href="beri-ulasan.html?id=agus" class="btn-rating">Berikan Ulasan</a>
   </div>
 
-  <div class="form-section" id="form-konsultasi">
-    <h3>Form Konsultasi</h3>
-    <form>
-      <label>Nama</label>
-      <input type="text" required>
-      <label>No. HP</label>
-      <input type="text" required>
-      <label>Pesan</label>
-      <textarea rows="4" required></textarea>
-      <input type="submit" value="Kirim Konsultasi">
-    </form>
+  <div class="tech-list">
+    <div class="tech-box" data-kategori="mesin_cuci" onclick="window.location.href='detail-teknisi.html?id=sari'">
+      <img src="https://randomuser.me/api/portraits/women/12.jpg">
+      <h3>Sari Amelia</h3>
+      <div class="stars">★★★★★</div>
+      <p>Spesialis Mesin Cuci - Bandung</p>
+    </div>
+    <div class="tech-box" data-kategori="tv" onclick="window.location.href='detail-teknisi.html?id=wawan'">
+      <img src="https://randomuser.me/api/portraits/men/13.jpg">
+      <h3>Wawan Saputra</h3>
+      <div class="stars">★★★☆☆</div>
+      <p>Spesialis TV - Tangerang</p>
+    </div>
+    <div class="tech-box" data-kategori="laptop" onclick="window.location.href='detail-teknisi.html?id=vita'">
+      <img src="https://randomuser.me/api/portraits/women/14.jpg">
+      <h3>Vita Oktaviani</h3>
+      <div class="stars">★★★★★</div>
+      <p>Spesialis Laptop - Bekasi</p>
+    </div>
+    <div class="tech-box" data-kategori="ac" onclick="window.location.href='detail-teknisi.html?id=bayu'">
+      <img src="https://randomuser.me/api/portraits/men/15.jpg">
+      <h3>Bayu Fadillah</h3>
+      <div class="stars">★★★★☆</div>
+      <p>Spesialis AC - Bogor</p>
+    </div>
   </div>
 
-  <div class="form-section" id="form-booking">
-    <h3>Form Booking</h3>
-    <form>
-      <label>Nama</label>
-      <input type="text" required>
-      <label>No. HP</label>
-      <input type="text" required>
-      <label>Alamat</label>
-      <textarea rows="2" required></textarea>
-      <label>Barang yang ingin diperbaiki</label>
-      <input type="text" required>
-      <input type="submit" value="Pesan Teknisi">
-    </form>
-  </div>
-</div>
+  <script>
+    const teknisiData = {
+      budi: {
+        nama: "Budi Santoso",
+        foto: "https://randomuser.me/api/portraits/men/10.jpg",
+        rating: "★★★★★",
+        deskripsi: "Spesialis kulkas: perbaikan kompresor, freon, sistem pendingin. Berpengalaman 10+ tahun di Jakarta."
+      },
+      agus: {
+        nama: "Agus Pratama",
+        foto: "https://randomuser.me/api/portraits/men/11.jpg",
+        rating: "★★★★☆",
+        deskripsi: "Teknisi AC handal: isi freon, servis unit indoor/outdoor. Area Depok dan sekitarnya."
+      },
+      sari: {
+        nama: "Sari Amelia",
+        foto: "https://randomuser.me/api/portraits/women/12.jpg",
+        rating: "★★★★★",
+        deskripsi: "Spesialis mesin cuci otomatis dan manual. Layanan cepat dan terpercaya di Bandung."
+      },
+      vita: {
+        nama: "Vita Oktaviani",
+        foto: "https://randomuser.me/api/portraits/women/14.jpg",
+        rating: "★★★★★",
+        deskripsi: "Ahli servis laptop: layar, keyboard, software ringan. Lokasi Bekasi."
+      }
+    };
 
-<div class="review-section">
-  <h3>Ulasan Pengguna</h3>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const data = teknisiData[id];
 
-  <div class="review-card">
-    <div class="stars">★★★★☆</div>
-    <p>"Teknisinya sangat cepat dan komunikatif, AC saya langsung normal!"</p>
-    <small>– Andi, 28 Mei 2025</small>
-  </div>
-
-  <div class="review-card">
-    <div class="stars">★★★★★</div>
-    <p>"Servis kulkasnya bagus dan harganya terjangkau."</p>
-    <small>– Rina, 26 Mei 2025</small>
-  </div>
-
-  <a href="beri-ulasan.html?id=agus" class="btn-rating">Berikan Ulasan</a>
-</div>
-
-<script>
-  const teknisiData = {
-    budi: {
-      nama: "Budi Santoso",
-      foto: "https://randomuser.me/api/portraits/men/10.jpg",
-      rating: "★★★★★",
-      deskripsi: "Spesialis kulkas: perbaikan kompresor, freon, sistem pendingin. Berpengalaman 10+ tahun di Jakarta."
-    },
-    agus: {
-      nama: "Agus Pratama",
-      foto: "https://randomuser.me/api/portraits/men/11.jpg",
-      rating: "★★★★☆",
-      deskripsi: "Teknisi AC handal: isi freon, servis unit indoor/outdoor. Area Depok dan sekitarnya."
-    },
-    sari: {
-      nama: "Sari Amelia",
-      foto: "https://randomuser.me/api/portraits/women/12.jpg",
-      rating: "★★★★★",
-      deskripsi: "Spesialis mesin cuci otomatis dan manual. Layanan cepat dan terpercaya di Bandung."
-    },
-    vita: {
-      nama: "Vita Oktaviani",
-      foto: "https://randomuser.me/api/portraits/women/14.jpg",
-      rating: "★★★★★",
-      deskripsi: "Ahli servis laptop: layar, keyboard, software ringan. Lokasi Bekasi."
+    if (data) {
+      document.getElementById("nama").textContent = data.nama;
+      document.getElementById("foto").src = data.foto;
+      document.getElementById("rating").textContent = data.rating;
+      document.getElementById("deskripsi").textContent = data.deskripsi;
+    } else {
+      document.querySelector(".container").innerHTML = "<p>Teknisi tidak ditemukan.</p>";
     }
-  };
 
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
-  const data = teknisiData[id];
-
-  if (data) {
-    document.getElementById("nama").textContent = data.nama;
-    document.getElementById("foto").src = data.foto;
-    document.getElementById("rating").textContent = data.rating;
-    document.getElementById("deskripsi").textContent = data.deskripsi;
-  } else {
-    document.querySelector(".container").innerHTML = "<p>Teknisi tidak ditemukan.</p>";
-  }
-
-  function toggleForm(type) {
-    document.getElementById("form-konsultasi").style.display = (type === "konsultasi") ? "block" : "none";
-    document.getElementById("form-booking").style.display = (type === "booking") ? "block" : "none";
-  }
-</script>
+    function toggleForm(type) {
+      document.getElementById("form-konsultasi").style.display = (type === "konsultasi") ? "block" : "none";
+      document.getElementById("form-booking").style.display = (type === "booking") ? "block" : "none";
+    }
+  </script>
 
 </body>
 </html>
