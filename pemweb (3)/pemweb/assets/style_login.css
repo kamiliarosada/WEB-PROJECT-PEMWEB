@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #f9faff, #cfd7f0);
+}
+
+.container {
+  width: 900px;
+  margin: 50px auto;
+  display: flex;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.left {
+  flex: 1;
+}
+
+.right {
+  flex: 1;
+  padding: 40px;
+}
+
+h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.form-title {
+  color: #666;
+  margin-bottom: 20px;
+}
+form input[type="username"],
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="tel"],
+form select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+}
+
+input[type="file"] {
+  margin-top: 10px;
+}
+
+.gender {
+  margin: 15px 0;
+}
+
+.gender label {
+  margin-right: 15px;
+}
+
+label.remember,
+label.upload,
+label.terms {
+  display: block;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn.primary {
+  background-color: #3f7dfc;
+  color: white;
+}
+
+.btn.secondary {
+  background-color: white;
+  border: 1px solid gold;
+  color: goldenrod;
+}
+
+.btn.yellow {
+  background-color: #ffc629;
+  color: white;
+}
+
+.bottom-links {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+.bottom-links a {
+  text-decoration: none;
+  color: #3f7dfc;
+  margin: 0 5px;
+}

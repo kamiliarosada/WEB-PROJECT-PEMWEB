@@ -4,111 +4,411 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Artikel Perbaikan Elektronik</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f6f8fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
       color: #333;
-      padding: 30px;
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
     }
+    
     .container {
-      max-width: 800px;
-      margin: auto;
+      max-width: 1200px;
+      margin: 30px auto;
       background: white;
-      border-radius: 10px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    header {
+      background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
       padding: 30px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      transform: rotate(30deg);
+    }
+    
     h1 {
-      text-align: center;
-      color: #007BFF;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      position: relative;
     }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
     .article-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 30px;
     }
+    
     .article-card {
-      background-color: #fff;
-      border-radius: 8px;
-      width: 48%;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 15px;
-      text-align: center;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      height: 100%;
     }
-    .article-card img {
+    
+    .article-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-image {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .card-image img {
       width: 100%;
-      max-width: 600px;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 15px;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
     }
+    
+    .article-card:hover .card-image img {
+      transform: scale(1.05);
+    }
+    
+    .card-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(37, 99, 235, 0.9);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    
+    .card-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
     .article-card h3 {
-      color: #007BFF;
+      color: #1e40af;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
     }
+    
     .article-card p {
-      color: #555;
+      color: #4b5563;
+      margin-bottom: 20px;
+      flex-grow: 1;
     }
+    
     .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #007BFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 25px;
+      background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
       color: white;
       text-decoration: none;
-      border-radius: 5px;
-      margin-top: 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    }
+    
+    .btn:hover {
+      background: linear-gradient(90deg, #1d4ed8 0%, #1e40af 100%);
+      box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+      transform: translateY(-2px);
+    }
+    
+    .btn i {
+      margin-right: 8px;
+    }
+    
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 40px 30px;
+      background: #f1f5f9;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .feature {
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
+    }
+    
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+    
+    .feature i {
+      font-size: 2.5rem;
+      color: #2563eb;
+      margin-bottom: 15px;
+    }
+    
+    .feature h4 {
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+    
+    .feature p {
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+    
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: #334155;
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      background: #2563eb;
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    @media (max-width: 768px) {
+      .article-list {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .feature {
+        max-width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>Artikel Perbaikan Elektronik</h1>
+    <header>
+      <h1><i class="fas fa-tools"></i> Panduan Perbaikan Elektronik</h1>
+      <p class="subtitle">Temukan solusi praktis untuk memperbaiki perangkat elektronik rumah tangga Anda dengan panduan langkah demi langkah dari para ahli</p>
+    </header>
+    
+    <div class="features">
+      <div class="feature">
+        <i class="fas fa-lightbulb"></i>
+        <h4>Solusi Praktis</h4>
+        <p>Panduan mudah diikuti untuk perbaikan DIY</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-save"></i>
+        <h4>Hemat Biaya</h4>
+        <p>Hindari biaya servis yang mahal</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-clock"></i>
+        <h4>Menghemat Waktu</h4>
+        <p>Perbaiki sendiri tanpa menunggu teknisi</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-book"></i>
+        <h4>Panduan Lengkap</h4>
+        <p>Dilengkapi gambar dan penjelasan detail</p>
+      </div>
+    </div>
+    
     <div class="article-list">
       <!-- Article 1: Kulkas -->
       <div class="article-card">
-        <img src="https://img.freepik.com/premium-photo/empty-modern-mini-refrigerator-isolated-white-isolated-with-white-highlights_660230-47866.jpg?ga=GA1.1.645799801.1749042352&semt=ais_hybrid&w=740" alt="Perbaikan Kulkas">
-        <h3>Perbaikan Kulkas</h3>
-        <p>Pelajari cara mengatasi masalah umum pada kulkas seperti tidak dingin, suara berisik, atau pembekuan yang berlebihan.</p>
-        <a href="detail.artikel.html?device=kulkas" class="btn">Baca Selengkapnya</a>
+        <div class="card-image">
+          <img src="https://img.freepik.com/premium-photo/empty-modern-mini-refrigerator-isolated-white-isolated-with-white-highlights_660230-47866.jpg" alt="Perbaikan Kulkas">
+          <span class="card-badge">Paling Dicari</span>
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-snowflake"></i> Perbaikan Kulkas</h3>
+          <p>Pelajari cara mengatasi masalah umum pada kulkas seperti tidak dingin, suara berisik, atau pembekuan yang berlebihan. Panduan lengkap dengan langkah-langkah praktis.</p>
+          <a href="detail.artikel.html?device=kulkas" class="btn"><i class="fas fa-book-open"></i> Baca Selengkapnya</a>
+        </div>
       </div>
 
       <!-- Article 2: AC -->
       <div class="article-card">
-        <img src="https://img.freepik.com/free-photo/air-conditioner-mounted-white-wall_53876-128235.jpg?ga=GA1.1.645799801.1749042352&semt=ais_hybrid&w=740" alt="Perbaikan AC">
-        <h3>Perbaikan AC</h3>
-        <p>Simak tips dan trik untuk memperbaiki AC yang tidak dingin atau mengalami gangguan lainnya.</p>
-        <a href="detail.artikel.html?device=ac" class="btn">Baca Selengkapnya</a>
+        <div class="card-image">
+          <img src="https://img.freepik.com/free-photo/air-conditioner-mounted-white-wall_53876-128235.jpg" alt="Perbaikan AC">
+          <span class="card-badge">Baru</span>
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-wind"></i> Perbaikan AC</h3>
+          <p>Simak tips dan trik untuk memperbaiki AC yang tidak dingin atau mengalami gangguan lainnya. Panduan troubleshooting untuk berbagai merek AC.</p>
+          <a href="detail.artikel.html?device=ac" class="btn"><i class="fas fa-book-open"></i> Baca Selengkapnya</a>
+        </div>
       </div>
 
       <!-- Article 3: Mesin Cuci -->
       <div class="article-card">
-        <img src="https://img.freepik.com/premium-photo/png-3d-washing-machine-element-illustration-transparent-background_53876-972353.jpg?ga=GA1.1.645799801.1749042352&semt=ais_hybrid&w=740" alt="Perbaikan Mesin Cuci">
-        <h3>Perbaikan Mesin Cuci</h3>
-        <p>Ketahui cara menangani mesin cuci yang rusak, mulai dari masalah motor hingga kerusakan pada drum.</p>
-        <a href="detail.artikel.html?device=mesin-cuci" class="btn">Baca Selengkapnya</a>
+        <div class="card-image">
+          <img src="https://img.freepik.com/premium-photo/png-3d-washing-machine-element-illustration-transparent-background_53876-972353.jpg" alt="Perbaikan Mesin Cuci">
+          <span class="card-badge">Populer</span>
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-soap"></i> Perbaikan Mesin Cuci</h3>
+          <p>Ketahui cara menangani mesin cuci yang rusak, mulai dari masalah motor hingga kerusakan pada drum. Solusi untuk mesin cuci top loading dan front loading.</p>
+          <a href="detail.artikel.html?device=mesin-cuci" class="btn"><i class="fas fa-book-open"></i> Baca Selengkapnya</a>
+        </div>
       </div>
 
       <!-- Article 4: TV -->
       <div class="article-card">
-        <img src="https://img.freepik.com/premium-vector/blank-television-screen_389832-1309.jpg?ga=GA1.1.645799801.1749042352&semt=ais_hybrid&w=740" alt="Perbaikan TV">
-        <h3>Perbaikan TV</h3>
-        <p>Panduan untuk memperbaiki TV yang tidak ada sinyal, layar gelap, atau masalah lainnya.</p>
-        <a href="detail.artikel.html?device=tv" class="btn">Baca Selengkapnya</a>
+        <div class="card-image">
+          <img src="https://img.freepik.com/premium-vector/blank-television-screen_389832-1309.jpg" alt="Perbaikan TV">
+          <span class="card-badge">Update</span>
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-tv"></i> Perbaikan TV</h3>
+          <p>Panduan untuk memperbaiki TV yang tidak ada sinyal, layar gelap, atau masalah lainnya. Termasuk solusi untuk TV LED, LCD, dan Plasma.</p>
+          <a href="detail.artikel.html?device=tv" class="btn"><i class="fas fa-book-open"></i> Baca Selengkapnya</a>
+        </div>
       </div>
 
       <!-- Article 5: Laptop -->
       <div class="article-card">
-        <img src="https://img.freepik.com/premium-vector/modern-laptop-mockup-with-blank-screen-vector-illustration_1253202-15309.jpg?ga=GA1.1.645799801.1749042352&semt=ais_hybrid&w=740" alt="Perbaikan Laptop">
-        <h3>Perbaikan Laptop</h3>
-        <p>Temukan solusi untuk perbaikan laptop yang mengalami masalah seperti tidak hidup, layar blank, atau keyboard yang tidak berfungsi.</p>
-        <a href="detail.artikel.html?device=laptop" class="btn">Baca Selengkapnya</a>
+        <div class="card-image">
+          <img src="https://img.freepik.com/premium-vector/modern-laptop-mockup-with-blank-screen-vector-illustration_1253202-15309.jpg" alt="Perbaikan Laptop">
+          <span class="card-badge">Teknisi</span>
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-laptop"></i> Perbaikan Laptop</h3>
+          <p>Temukan solusi untuk perbaikan laptop yang mengalami masalah seperti tidak hidup, layar blank, atau keyboard yang tidak berfungsi. Panduan hardware dan software.</p>
+          <a href="detail.artikel.html?device=laptop" class="btn"><i class="fas fa-book-open"></i> Baca Selengkapnya</a>
+        </div>
+      </div>
+      
+      <!-- Article 6: Smartphone -->
+      <div class="article-card">
+        <div class="card-image">
+          <img src="https://img.freepik.com/free-psd/smartphone-mock-up_1310-812.jpg" alt="Perbaikan Smartphone">
+          <span class="card-badge">Terbaru</span>
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-mobile-alt"></i> Perbaikan Smartphone</h3>
+          <p>Pelajari cara memperbaiki masalah umum smartphone seperti baterai cepat habis, layar retak, atau masalah sinyal. Panduan untuk Android dan iPhone.</p>
+          <a href="detail.artikel.html?device=smartphone" class="btn"><i class="fas fa-book-open"></i> Baca Selengkapnya</a>
+        </div>
       </div>
     </div>
+    
+    <footer>
+      <div class="footer-content">
+        <h3>Temukan Solusi Perbaikan Elektronik Anda</h3>
+        <p>Panduan gratis untuk perbaikan DIY perangkat elektronik rumah tangga</p>
+        
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <p class="copyright">© 2023 PanduanPerbaikanElektronik.com. Hak Cipta Dilindungi.</p>
+      </div>
+    </footer>
   </div>
 
 </body>

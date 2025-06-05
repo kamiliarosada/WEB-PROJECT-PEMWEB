@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beri Ulasan Teknisi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f8fa;
+      padding: 30px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #007BFF;
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .submit-btn {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .info {
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Berikan Ulasan untuk Teknisi</h2>
+    <p class="info">Isi form ini untuk memberikan rating dan komentar setelah menggunakan layanan teknisi.</p>
+
+    <form id="form-ulasan">
+      <label>Nama Anda</label>
+      <input type="text" name="nama" required>
+
+      <label>Teknisi</label>
+      <input type="text" name="teknisi" id="teknisi" readonly>
+
+      <label>Rating</label>
+      <select name="rating" required>
+        <option value="">Pilih Rating</option>
+        <option value="★★★★★">★★★★★</option>
+        <option value="★★★★☆">★★★★☆</option>
+        <option value="★★★☆☆">★★★☆☆</option>
+        <option value="★★☆☆☆">★★☆☆☆</option>
+        <option value="★☆☆☆☆">★☆☆☆☆</option>
+      </select>
+
+      <label>Komentar</label>
+      <textarea name="komentar" rows="4" required></textarea>
+
+      <input type="submit" class="submit-btn" value="Kirim Ulasan">
+    </form>
+  </div>
+
+  <script>
+    // Ambil ID teknisi dari URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const namaTeknisi = {
+      budi: "Budi Santoso",
+      agus: "Agus Pratama",
+      sari: "Sari Amelia",
+      vita: "Vita Oktaviani"
+    };
+
+    if (namaTeknisi[id]) {
+      document.getElementById('teknisi').value = namaTeknisi[id];
+    } else {
+      document.getElementById('teknisi').value = "(Tidak diketahui)";
+    }
+
+    // Simulasi pengiriman
+    document.getElementById('form-ulasan').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("Terima kasih! Ulasan kamu telah dikirim ✅");
+      window.location.href = "detail-teknisi.html?id=" + id;
+    });
+  </script>
+
+</body>
+</html>
