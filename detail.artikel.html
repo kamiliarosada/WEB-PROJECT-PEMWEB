@@ -53,6 +53,7 @@
             border-radius: 10px;
             margin-bottom: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            
         }
         
         .image-container img {
@@ -60,6 +61,7 @@
             height: auto;
             display: block;
             transition: transform 0.3s ease;
+           margin-top: -60px;
         }
         
         .image-container img:hover {
@@ -281,16 +283,16 @@
                 <div class="rating-title">Berikan Rating untuk Panduan Ini</div>
                 <p>Bagaimana pengalaman Anda dengan panduan perbaikan kulkas ini?</p>
                 <div class="star-rating">
-                    <input type="radio" id="star5-kulkas" name="rating-kulkas" value="5">
-                    <label for="star5-kulkas" title="Sangat memuaskan"></label>
-                    <input type="radio" id="star4-kulkas" name="rating-kulkas" value="4">
-                    <label for="star4-kulkas" title="Memuaskan"></label>
-                    <input type="radio" id="star3-kulkas" name="rating-kulkas" value="3">
-                    <label for="star3-kulkas" title="Cukup baik"></label>
-                    <input type="radio" id="star2-kulkas" name="rating-kulkas" value="2">
-                    <label for="star2-kulkas" title="Kurang memuaskan"></label>
-                    <input type="radio" id="star1-kulkas" name="rating-kulkas" value="1">
                     <label for="star1-kulkas" title="Tidak memuaskan"></label>
+                    <input type="radio" id="star1-kulkas" name="rating-kulkas" value="1">
+                    <label for="star2-kulkas" title="Kurang memuaskan"></label>
+                      <input type="radio" id="star2-kulkas" name="rating-kulkas" value="2">
+                      <label for="star3-kulkas" title="Cukup baik"></label>
+                      <input type="radio" id="star3-kulkas" name="rating-kulkas" value="3">
+                      <label for="star4-kulkas" title="Memuaskan"></label>
+                      <input type="radio" id="star4-kulkas" name="rating-kulkas" value="4">
+                    <label for="star5-kulkas" title="Sangat memuaskan"></label>
+                    <input type="radio" id="star5-kulkas" name="rating-kulkas" value="5">
                 </div>
                 <button class="submit-btn" id="submit-rating-kulkas">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -380,17 +382,17 @@
                 <div class="rating-title">Berikan Rating untuk Panduan Ini</div>
                 <p>Bagaimana pengalaman Anda dengan panduan perbaikan AC ini?</p>
                 <div class="star-rating">
-                    <input type="radio" id="star5-ac" name="rating-ac" value="5">
-                    <label for="star5-ac" title="Sangat memuaskan"></label>
-                    <input type="radio" id="star4-ac" name="rating-ac" value="4">
-                    <label for="star4-ac" title="Memuaskan"></label>
-                    <input type="radio" id="star3-ac" name="rating-ac" value="3">
-                    <label for="star3-ac" title="Cukup baik"></label>
-                    <input type="radio" id="star2-ac" name="rating-ac" value="2">
-                    <label for="star2-ac" title="Kurang memuaskan"></label>
-                    <input type="radio" id="star1-ac" name="rating-ac" value="1">
-                    <label for="star1-ac" title="Tidak memuaskan"></label>
-                </div>
+            <input type="radio" id="star5-ac" name="rating-ac" value="5">
+            <label for="star5-ac" title="Sangat memuaskan"></label>
+            <input type="radio" id="star4-ac" name="rating-ac" value="4">
+            <label for="star4-ac" title="Memuaskan"></label>
+            <input type="radio" id="star3-ac" name="rating-ac" value="3">
+            <label for="star3-ac" title="Cukup baik"></label>
+            <input type="radio" id="star2-ac" name="rating-ac" value="2">
+            <label for="star2-ac" title="Kurang memuaskan"></label>
+            <input type="radio" id="star1-ac" name="rating-ac" value="1">
+            <label for="star1-ac" title="Tidak memuaskan"></label>
+        </div>
                 <button class="submit-btn" id="submit-rating-ac">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -408,7 +410,7 @@
         <div id="mesin-cuci" class="details-section" style="display:none;">
             <h4>Cara Perbaikan Mesin Cuci</h4>
             <div class="image-container">
-                <img src="https://img.freepik.com/premium-photo/png-3d-washing-machine-element-illustration-transparent-background_53876-972353.jpg?ga=GA1.1.645799801.1749042352&semt=ais_hybrid&w=740" alt="Gambar Mesin Cuci">
+                <img src="https://img.freepik.com/free-vector/washing-machine-realistic-set_1284-29777.jpg?ga=GA1.1.645799801.1749042352&semt=ais_hybrid&w=740">
             </div>
             <ol>
                 <li><strong>Cek Sumber Listrik:</strong>
@@ -488,17 +490,17 @@
                 <div class="rating-title">Berikan Rating untuk Panduan Ini</div>
                 <p>Bagaimana pengalaman Anda dengan panduan perbaikan mesin cuci ini?</p>
                 <div class="star-rating">
-                    <input type="radio" id="star5-mesin-cuci" name="rating-mesin-cuci" value="5">
-                    <label for="star5-mesin-cuci" title="Sangat memuaskan"></label>
-                    <input type="radio" id="star4-mesin-cuci" name="rating-mesin-cuci" value="4">
-                    <label for="star4-mesin-cuci" title="Memuaskan"></label>
-                    <input type="radio" id="star3-mesin-cuci" name="rating-mesin-cuci" value="3">
-                    <label for="star3-mesin-cuci" title="Cukup baik"></label>
-                    <input type="radio" id="star2-mesin-cuci" name="rating-mesin-cuci" value="2">
-                    <label for="star2-mesin-cuci" title="Kurang memuaskan"></label>
-                    <input type="radio" id="star1-mesin-cuci" name="rating-mesin-cuci" value="1">
-                    <label for="star1-mesin-cuci" title="Tidak memuaskan"></label>
-                </div>
+            <input type="radio" id="star5-mesin-cuci" name="rating-mesin-cuci" value="5">
+            <label for="star5-mesin-cuci" title="Sangat memuaskan"></label>
+            <input type="radio" id="star4-mesin-cuci" name="rating-mesin-cuci" value="4">
+            <label for="star4-mesin-cuci" title="Memuaskan"></label>
+            <input type="radio" id="star3-mesin-cuci" name="rating-mesin-cuci" value="3">
+            <label for="star3-mesin-cuci" title="Cukup baik"></label>
+            <input type="radio" id="star2-mesin-cuci" name="rating-mesin-cuci" value="2">
+            <label for="star2-mesin-cuci" title="Kurang memuaskan"></label>
+            <input type="radio" id="star1-mesin-cuci" name="rating-mesin-cuci" value="1">
+            <label for="star1-mesin-cuci" title="Tidak memuaskan"></label>
+        </div>
                 <button class="submit-btn" id="submit-rating-mesin-cuci">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -516,7 +518,7 @@
         <div id="tv" class="details-section" style="display:none;">
             <h4>Cara Perbaikan TV</h4>
             <div class="image-container">
-                <img src="https://img.freepik.com/premium-vector/blank-television-screen_389832-1309.jpg?ga=GA1.1.645799801.1749042352&semt=ais_hybrid&w=740" alt="Gambar TV">
+                <img src="https://img.freepik.com/free-vector/lcd-screen-mock-up-plasma-television-modern-video-system-hd-tv-digital-technology_1441-1840.jpg?ga=GA1.1.645799801.1749042352&semt=ais_hybrid&w=740" alt="Gambar TV">
             </div>
             <ol>
                 <li><strong>Cek Kabel dan Koneksi:</strong>
@@ -596,17 +598,17 @@
                 <div class="rating-title">Berikan Rating untuk Panduan Ini</div>
                 <p>Bagaimana pengalaman Anda dengan panduan perbaikan TV ini?</p>
                 <div class="star-rating">
-                    <input type="radio" id="star5-tv" name="rating-tv" value="5">
-                    <label for="star5-tv" title="Sangat memuaskan"></label>
-                    <input type="radio" id="star4-tv" name="rating-tv" value="4">
-                    <label for="star4-tv" title="Memuaskan"></label>
-                    <input type="radio" id="star3-tv" name="rating-tv" value="3">
-                    <label for="star3-tv" title="Cukup baik"></label>
-                    <input type="radio" id="star2-tv" name="rating-tv" value="2">
-                    <label for="star2-tv" title="Kurang memuaskan"></label>
-                    <input type="radio" id="star1-tv" name="rating-tv" value="1">
-                    <label for="star1-tv" title="Tidak memuaskan"></label>
-                </div>
+            <input type="radio" id="star5-tv" name="rating-tv" value="5">
+            <label for="star5-tv" title="Sangat memuaskan"></label>
+            <input type="radio" id="star4-tv" name="rating-tv" value="4">
+            <label for="star4-tv" title="Memuaskan"></label>
+            <input type="radio" id="star3-tv" name="rating-tv" value="3">
+            <label for="star3-tv" title="Cukup baik"></label>
+            <input type="radio" id="star2-tv" name="rating-tv" value="2">
+            <label for="star2-tv" title="Kurang memuaskan"></label>
+            <input type="radio" id="star1-tv" name="rating-tv" value="1">
+            <label for="star1-tv" title="Tidak memuaskan"></label>
+        </div>
                 <button class="submit-btn" id="submit-rating-tv">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -624,7 +626,7 @@
         <div id="laptop" class="details-section" style="display:none;">
             <h4>Cara Perbaikan Laptop</h4>
             <div class="image-container">
-                <img src="https://img.freepik.com/premium-vector/modern-laptop-mockup-with-blank-screen-vector-illustration_1253202-15309.jpg?ga=GA1.1.645799801.1749042352&semt=ais_hybrid&w=740" alt="Gambar Laptop">
+                <img src="https://img.freepik.com/free-vector/laptop-computer-with-white-screen-keyboard_107791-1185.jpg?ga=GA1.1.645799801.1749042352&semt=ais_hybrid&w=740" alt="Gambar Laptop">
             </div>
             <ol>
                 <li><strong>Cek Baterai dan Kabel Charger:</strong>
@@ -713,17 +715,17 @@
                 <div class="rating-title">Berikan Rating untuk Panduan Ini</div>
                 <p>Bagaimana pengalaman Anda dengan panduan perbaikan laptop ini?</p>
                 <div class="star-rating">
-                    <input type="radio" id="star5-laptop" name="rating-laptop" value="5">
-                    <label for="star5-laptop" title="Sangat memuaskan"></label>
-                    <input type="radio" id="star4-laptop" name="rating-laptop" value="4">
-                    <label for="star4-laptop" title="Memuaskan"></label>
-                    <input type="radio" id="star3-laptop" name="rating-laptop" value="3">
-                    <label for="star3-laptop" title="Cukup baik"></label>
-                    <input type="radio" id="star2-laptop" name="rating-laptop" value="2">
-                    <label for="star2-laptop" title="Kurang memuaskan"></label>
-                    <input type="radio" id="star1-laptop" name="rating-laptop" value="1">
-                    <label for="star1-laptop" title="Tidak memuaskan"></label>
-                </div>
+            <input type="radio" id="star5-laptop" name="rating-laptop" value="5">
+            <label for="star5-laptop" title="Sangat memuaskan"></label>
+            <input type="radio" id="star4-laptop" name="rating-laptop" value="4">
+            <label for="star4-laptop" title="Memuaskan"></label>
+            <input type="radio" id="star3-laptop" name="rating-laptop" value="3">
+            <label for="star3-laptop" title="Cukup baik"></label>
+            <input type="radio" id="star2-laptop" name="rating-laptop" value="2">
+            <label for="star2-laptop" title="Kurang memuaskan"></label>
+            <input type="radio" id="star1-laptop" name="rating-laptop" value="1">
+            <label for="star1-laptop" title="Tidak memuaskan"></label>
+        </div>
                 <button class="submit-btn" id="submit-rating-laptop">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
