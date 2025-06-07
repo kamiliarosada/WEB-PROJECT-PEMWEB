@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Teknisi - FixIt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #3b82f6;
+      --secondary: #f97316;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --light-gray: #e2e8f0;
+      --success: #10b981;
+      --user-bubble: #3b82f6;
+      --tech-bubble: #e2e8f0;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .logo i {
+      font-size: 1.8rem;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--light);
+      color: var(--primary);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .back-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    /* Chat Section */
+    .chat-container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      padding: 20px;
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .header-chat {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .profile-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      background-image: url(''); /* Placeholder for dynamic image */
+      background-size: cover;
+      background-position: center;
+    }
+
+    .profile-info {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 3px;
+    }
+
+    .status-indicator {
+      width: 10px;
+      height: 10px;
+      background-color: var(--success);
+      border-radius: 50%;
+    }
+
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      padding-right: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .message {
+      display: flex;
+      max-width: 80%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message.user {
+      align-self: flex-end;
+    }
+
+    .message-content {
+      padding: 12px 16px;
+      border-radius: 18px;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .message.user .message-content {
+      background: var(--user-bubble);
+      color: white;
+      border-bottom-right-radius: 5px;
+    }
+
+    .message.tech .message-content {
+      background: var(--tech-bubble);
+      color: var(--dark);
+      border-bottom-left-radius: 5px;
+    }
+
+    .message-time {
+      font-size: 0.7rem;
+      color: var(--gray);
+      margin-top: 5px;
+      text-align: right;
+    }
+
+    .message.tech .message-time {
+      text-align: left;
+    }
+
+    .chat-footer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      border-radius: 12px;
+      padding: 5px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+
+    .chat-footer input {
+      flex: 1;
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: 1px solid var(--light-gray);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .chat-footer input:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .chat-footer button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chat-footer button:hover {
+      background-color: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    .typing-indicator {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 15px;
+      background: var(--tech-bubble);
+      border-radius: 18px;
+      width: fit-content;
+      margin-bottom: 10px;
+    }
+
+    .typing-indicator span {
+      width: 8px;
+      height: 8px;
+      background: var(--gray);
+      border-radius: 50%;
+      display: inline-block;
+      animation: bounce 1.3s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--gray);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .empty-state i {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: var(--light-gray);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .chat-container {
+        height: 80vh;
+        padding: 15px;
+      }
+      
+      .message {
+        max-width: 90%;
+      }
+      
+      .chat-footer button span {
+        display: none;
+      }
+      
+      .chat-footer button {
+        padding: 12px;
+      }
+      
+      .chat-footer button i {
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-tools"></i>
+        <span>FixIt</span>
+      </a>
+      <button class="back-btn" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i>
+        Kembali
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="chat-container">
+      <div class="header-chat">
+        <div class="profile-img" id="profile-img"></div>
+        <div>
+          <div class="profile-info" id="profile-name">Wawan Saputra</div>
+          <div class="status">
+            <div class="status-indicator"></div>
+            <span>Tersedia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="messages" id="messages">
+        <!-- Chat messages will be added dynamically -->
+      </div>
+
+      <div class="typing-indicator" id="typingIndicator">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="chat-footer">
+        <input type="text" id="messageInput" placeholder="Ketik pesan..." onkeypress="handleKeyPress(event)" />
+        <button onclick="sendMessage()">
+          <i class="fas fa-paper-plane"></i>
+          <span>Kirim</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const messagesContainer = document.getElementById("messages");
+    const typingIndicator = document.getElementById("typingIndicator");
+
+    // Technician Data
+    const technicians = {
+      wawan: {
+        name: "Wawan Saputra",
+        photo: "https://randomuser.me/api/portraits/men/41.jpg",
+      },
+      budi: {
+        name: "Budi Santoso",
+        photo: "https://randomuser.me/api/portraits/men/10.jpg",
+      },
+      agus: {
+        name: "Agus Pratama",
+        photo: "https://randomuser.me/api/portraits/men/11.jpg",
+      },
+      sari: {
+        name: "Sari Amelia",
+        photo: "https://randomuser.me/api/portraits/women/12.jpg",
+      },
+      vita: {
+        name: "Vita Oktaviani",
+        photo: "https://randomuser.me/api/portraits/women/14.jpg",
+      },
+      bayu: {
+        name: "Bayu Fadillah",
+        photo: "https://randomuser.me/api/portraits/men/19.jpg",
+      }
+    };
+
+    // Get technician ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const techId = params.get('id'); // Fetch the technician ID from URL parameters
+
+    // Ensure the technician ID is valid, if not, default to Wawan
+    const techData = technicians[techId] || technicians.wawan;
+
+    // Update profile with the selected technician data
+    document.getElementById('profile-img').style.backgroundImage = `url(${techData.photo})`;
+    document.getElementById('profile-name').textContent = techData.name;
+
+    // Initial messages to simulate conversation
+    const initialMessages = [
+      { sender: "tech", text: "Halo! Saya " + techData.name + ", teknisi FixIt. Ada yang bisa saya bantu?", time: "10:30" },
+      { sender: "user", text: "Halo Pak, TV saya tiba-tiba mati dan tidak bisa menyala lagi", time: "10:31" },
+      { sender: "tech", text: "Baik, saya akan coba bantu perbaiki. Apakah TV menunjukkan lampu indikator menyala?", time: "10:32" },
+      { sender: "user", text: "Iya, lampu indikator merah menyala tapi tidak bisa dinyalakan", time: "10:33" },
+      { sender: "tech", text: "Coba cabut kabel power selama 30 detik, lalu tancapkan kembali dan coba nyalakan", time: "10:33" }
+    ];
+
+    // Function to format current time
+    const getCurrentTime = () => {
+      const now = new Date();
+      return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+    };
+
+    // Function to add message to chat
+    const addMessage = (sender, text) => {
+      const messageDiv = document.createElement("div");
+      messageDiv.classList.add("message");
+      messageDiv.classList.add(sender);
+      
+      const contentDiv = document.createElement("div");
+      contentDiv.classList.add("message-content");
+      contentDiv.textContent = text;
+      
+      const timeSpan = document.createElement("div");
+      timeSpan.classList.add("message-time");
+      timeSpan.textContent = getCurrentTime();
+      
+      messageDiv.appendChild(contentDiv);
+      messageDiv.appendChild(timeSpan);
+      
+      messagesContainer.appendChild(messageDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    };
+
+    // Send new message
+    const sendMessage = () => {
+      const messageInput = document.getElementById("messageInput");
+      const messageText = messageInput.value.trim();
+
+      if (messageText !== "") {
+        addMessage("user", messageText);
+        messageInput.value = "";
+        
+        // Show typing indicator
+        typingIndicator.style.display = "flex";
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        
+        // Simulating a response from the technician
+        setTimeout(() => {
+          typingIndicator.style.display = "none";
+          const responses = [
+            "Coba periksa kabel HDMI yang terhubung ke TV. Kadang konektor yang longgar bisa menyebabkan masalah.",
+            "Apakah Anda mencoba mengganti remote dengan tombol power di TV langsung?",
+            "Kalau masalah masih berlanjut, saya bisa jadwalkan kunjungan ke lokasi besok pagi.",
+            "Saya sarankan untuk mencabut semua perangkat dari TV dan coba nyalakan tanpa perangkat tambahan.",
+            "Bisa Anda cek model TV dan nomor serinya? Biasanya ada di stiker belakang TV."
+          ];
+          const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+          addMessage("tech", randomResponse);
+        }, 2000);
+      }
+    };
+
+    // Handle Enter key press
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    };
+
+    // Initialize chat with sample messages
+    window.onload = () => {
+      initialMessages.forEach(msg => {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message");
+        messageDiv.classList.add(msg.sender);
+        
+        const contentDiv = document.createElement("div");
+        contentDiv.classList.add("message-content");
+        contentDiv.textContent = msg.text;
+        
+        const timeSpan = document.createElement("div");
+        timeSpan.classList.add("message-time");
+        timeSpan.textContent = msg.time;
+        
+        messageDiv.appendChild(contentDiv);
+        messageDiv.appendChild(timeSpan);
+        
+        messagesContainer.appendChild(messageDiv);
+      });
+      
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    };
+  </script>
+</body>
+</html>

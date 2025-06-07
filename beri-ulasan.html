@@ -1,111 +1,677 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Beri Ulasan Teknisi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Beri Ulasan Teknisi - FixIt</title>
   <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #3b82f6;
+      --secondary: #f97316;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --light-gray: #e2e8f0;
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f6f8fa;
-      padding: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 0 20px;
+      animation: fadeInDown 0.8s ease;
     }
-    h2 {
-      color: #007BFF;
+    
+    .header h1 {
+      color: var(--primary);
+      font-size: 2.5rem;
       margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
+    
+    .header p {
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 90%;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.8s ease;
+    }
+    
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    
+    h2 {
+      color: var(--dark);
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 1.8rem;
+      position: relative;
+    }
+    
+    h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+    
+    .info {
+      font-size: 1rem;
+      color: var(--gray);
+      text-align: center;
+      margin-bottom: 30px;
+      background: var(--light);
+      padding: 15px;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .review-form {
+      display: grid;
+      gap: 25px;
+    }
+    
+    .form-group {
+      position: relative;
+    }
+    
     label {
       display: block;
-      margin-top: 15px;
-      font-weight: bold;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
+    
+    .form-icon {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
     input, textarea, select {
       width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--light-gray);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: var(--light);
     }
+    
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+    
     textarea {
       resize: vertical;
+      min-height: 120px;
     }
+    
+    .tech-selector {
+      margin-bottom: 25px;
+      background: var(--light);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    .tech-selector label {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+    
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .tech-card {
+      background: white;
+      border: 2px solid var(--light-gray);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .tech-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      border-color: var(--primary-light);
+    }
+    
+    .tech-card.selected {
+      border-color: var(--primary);
+      background: rgba(37, 99, 235, 0.05);
+      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+    }
+    
+    .tech-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      margin: 0 auto 10px;
+    }
+    
+    .tech-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+    }
+    
+    .tech-specialty {
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+    
+    .rating-section {
+      text-align: center;
+      padding: 20px 0;
+      background: var(--light);
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+    
+    .rating-title {
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .star {
+      font-size: 2.5rem;
+      color: #ddd;
+      cursor: pointer;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+    
+    .star:hover {
+      transform: scale(1.1);
+    }
+    
+    .star.selected {
+      color: var(--warning);
+    }
+    
+    .rating-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--dark);
+      display: inline-block;
+      background: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
     .submit-btn {
-      margin-top: 20px;
-      padding: 10px 15px;
-      background-color: #007BFF;
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
     }
-    .info {
-      font-size: 14px;
-      color: #666;
+    
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    }
+    
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+    
+    .submit-btn i {
+      margin-right: 10px;
+    }
+    
+    .thank-you {
+      display: none;
+      text-align: center;
+      padding: 40px 0;
+    }
+    
+    .thank-you i {
+      font-size: 4rem;
+      color: var(--success);
+      margin-bottom: 20px;
+      animation: bounce 1s ease infinite;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .thank-you h3 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: var(--success);
+    }
+    
+    .thank-you p {
+      color: var(--gray);
+      max-width: 500px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+    }
+    
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--light);
+      color: var(--primary);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    
+    .back-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 25px;
+        width: 95%;
+      }
+      
+      .tech-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .star {
+        font-size: 2rem;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .star {
+        font-size: 1.8rem;
+      }
+      
+      .submit-btn {
+        padding: 14px;
+        font-size: 1rem;
+      }
+      
+      .header h1 {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="header">
+    <h1><i class="fas fa-tools"></i> FixIt</h1>
+    <p>Bantu kami meningkatkan kualitas layanan dengan memberikan ulasan jujur</p>
+  </div>
 
   <div class="container">
-    <h2>Berikan Ulasan untuk Teknisi</h2>
-    <p class="info">Isi form ini untuk memberikan rating dan komentar setelah menggunakan layanan teknisi.</p>
-
-    <form id="form-ulasan">
-      <label>Nama Anda</label>
-      <input type="text" name="nama" required>
-
-      <label>Teknisi</label>
-      <input type="text" name="teknisi" id="teknisi" readonly>
-
-      <label>Rating</label>
-      <select name="rating" required>
-        <option value="">Pilih Rating</option>
-        <option value="★★★★★">★★★★★</option>
-        <option value="★★★★☆">★★★★☆</option>
-        <option value="★★★☆☆">★★★☆☆</option>
-        <option value="★★☆☆☆">★★☆☆☆</option>
-        <option value="★☆☆☆☆">★☆☆☆☆</option>
-      </select>
-
-      <label>Komentar</label>
-      <textarea name="komentar" rows="4" required></textarea>
-
-      <input type="submit" class="submit-btn" value="Kirim Ulasan">
-    </form>
+    <h2>Beri Ulasan untuk Teknisi</h2>
+    
+    <div class="review-form">
+      <div class="form-group">
+        <label for="nama">
+          <i class="fas fa-user form-icon"></i> Nama Anda
+        </label>
+        <input type="text" id="nama" placeholder="Masukkan nama lengkap Anda" required>
+      </div>
+      
+      <div class="tech-selector">
+        <label>
+          <i class="fas fa-user-tie form-icon"></i> Pilih Teknisi
+        </label>
+        <div class="tech-grid" id="techGrid">
+          <!-- Tech cards will be added dynamically -->
+        </div>
+      </div>
+      
+      <div class="rating-section">
+        <div class="rating-title">
+          <i class="fas fa-star form-icon"></i> Rating Layanan
+        </div>
+        <div class="stars">
+          <i class="fas fa-star star" data-value="1"></i>
+          <i class="fas fa-star star" data-value="2"></i>
+          <i class="fas fa-star star" data-value="3"></i>
+          <i class="fas fa-star star" data-value="4"></i>
+          <i class="fas fa-star star" data-value="5"></i>
+        </div>
+        <div class="rating-value">0/5</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="komentar">
+          <i class="fas fa-comment form-icon"></i> Komentar
+        </label>
+        <textarea id="komentar" placeholder="Bagaimana pengalaman Anda menggunakan layanan teknisi kami? (minimal 20 karakter)" required minlength="20"></textarea>
+      </div>
+      
+      <button class="submit-btn" id="submitBtn">
+        <i class="fas fa-paper-plane"></i> Kirim Ulasan
+      </button>
+    </div>
+    
+    <div class="thank-you" id="thankYou">
+      <i class="fas fa-check-circle"></i>
+      <h3>Terima Kasih Atas Ulasan Anda!</h3>
+      <p>Ulasan Anda sangat berharga untuk membantu kami meningkatkan kualitas layanan. Kami akan terus berupaya memberikan yang terbaik untuk Anda.</p>
+      <a href="#" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+      </a>
+    </div>
   </div>
 
   <script>
-    // Ambil ID teknisi dari URL
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    const namaTeknisi = {
-      budi: "Budi Santoso",
-      agus: "Agus Pratama",
-      sari: "Sari Amelia",
-      vita: "Vita Oktaviani"
-    };
-
-    if (namaTeknisi[id]) {
-      document.getElementById('teknisi').value = namaTeknisi[id];
-    } else {
-      document.getElementById('teknisi').value = "(Tidak diketahui)";
-    }
-
-    // Simulasi pengiriman
-    document.getElementById('form-ulasan').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert("Terima kasih! Ulasan kamu telah dikirim ✅");
-      window.location.href = "detail-teknisi.html?id=" + id;
+    document.addEventListener('DOMContentLoaded', function() {
+      // Data teknisi
+      const teknisiData = [
+        { 
+          id: "budi",
+          name: "Budi Santoso", 
+          initial: "BS", 
+          specialty: "Spesialis Kulkas",
+          experience: "5 Tahun",
+          photo: "https://randomuser.me/api/portraits/men/10.jpg"
+        },
+        { 
+          id: "agus",
+          name: "Agus Pratama", 
+          initial: "AP", 
+          specialty: "Spesialis AC",
+          experience: "8 Tahun",
+          photo: "https://randomuser.me/api/portraits/men/11.jpg"
+        },
+        { 
+          id: "sari",
+          name: "Sari Amelia", 
+          initial: "SA", 
+          specialty: "Spesialis Mesin Cuci",
+          experience: "6 Tahun",
+          photo: "https://randomuser.me/api/portraits/women/12.jpg"
+        },
+        { 
+          id: "vita",
+          name: "Vita Oktaviani", 
+          initial: "VO", 
+          specialty: "Spesialis Laptop",
+          experience: "4 Tahun",
+          photo: "https://randomuser.me/api/portraits/women/14.jpg"
+        },
+        { 
+          id: "bayu",
+          name: "Bayu Fadillah", 
+          initial: "BF", 
+          specialty: "Spesialis AC",
+          experience: "3 Tahun",
+          photo: "https://randomuser.me/api/portraits/men/19.jpg"
+        },
+        { 
+          id: "wawan",
+          name: "Wawan Saputra", 
+          initial: "WS", 
+          specialty: "Spesialis TV",
+          experience: "7 Tahun",
+          photo: "https://randomuser.me/api/portraits/men/41.jpg"
+        }
+      ];
+      
+      // Render tech cards
+      const techGrid = document.getElementById('techGrid');
+      teknisiData.forEach(tech => {
+        const card = document.createElement('div');
+        card.className = 'tech-card';
+        card.dataset.id = tech.id;
+        card.innerHTML = `
+          <div class="tech-avatar" style="background-image: url(${tech.photo});"></div>
+          <div class="tech-name">${tech.name}</div>
+          <div class="tech-specialty">${tech.specialty}</div>
+          <div class="tech-specialty">${tech.experience} Pengalaman</div>
+        `;
+        techGrid.appendChild(card);
+      });
+      
+      // Handle tech selection
+      let selectedTechId = null;
+      const techCards = document.querySelectorAll('.tech-card');
+      
+      techCards.forEach(card => {
+        card.addEventListener('click', function() {
+          // Remove selected class from all cards
+          techCards.forEach(c => c.classList.remove('selected'));
+          
+          // Add selected class to clicked card
+          this.classList.add('selected');
+          selectedTechId = this.dataset.id;
+        });
+      });
+      
+      // Sistem rating bintang
+      const stars = document.querySelectorAll('.star');
+      const ratingValue = document.querySelector('.rating-value');
+      let selectedRating = 0;
+      
+      stars.forEach(star => {
+        star.addEventListener('click', function() {
+          const value = parseInt(this.getAttribute('data-value'));
+          selectedRating = value;
+          
+          // Update tampilan bintang
+          stars.forEach((s, index) => {
+            if (index < value) {
+              s.classList.add('selected');
+              s.classList.remove('far');
+              s.classList.add('fas');
+            } else {
+              s.classList.remove('selected');
+              s.classList.remove('fas');
+              s.classList.add('far');
+            }
+          });
+          
+          // Update teks rating
+          ratingValue.textContent = `${value}/5`;
+        });
+        
+        // Efek hover
+        star.addEventListener('mouseover', function() {
+          const value = parseInt(this.getAttribute('data-value'));
+          stars.forEach((s, index) => {
+            if (index < value) {
+              s.classList.add('fas');
+              s.classList.remove('far');
+            } else {
+              s.classList.add('far');
+              s.classList.remove('fas');
+            }
+          });
+        });
+        
+        star.addEventListener('mouseout', function() {
+          stars.forEach((s, index) => {
+            if (index < selectedRating) {
+              s.classList.add('fas');
+              s.classList.remove('far');
+            } else {
+              s.classList.add('far');
+              s.classList.remove('fas');
+            }
+          });
+        });
+      });
+      
+      // Submit form
+      const submitBtn = document.getElementById('submitBtn');
+      const form = document.querySelector('.review-form');
+      const thankYou = document.getElementById('thankYou');
+      
+      submitBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Validasi form
+        const nama = document.getElementById('nama').value.trim();
+        const komentar = document.getElementById('komentar').value.trim();
+        
+        if (!nama) {
+          alert('Silakan masukkan nama Anda');
+          return;
+        }
+        
+        if (!selectedTechId) {
+          alert('Silakan pilih teknisi');
+          return;
+        }
+        
+        if (selectedRating === 0) {
+          alert('Silakan berikan rating');
+          return;
+        }
+        
+        if (komentar.length < 20) {
+          alert('Komentar harus minimal 20 karakter');
+          return;
+        }
+        
+        // Tampilkan pesan terima kasih
+        form.style.display = 'none';
+        thankYou.style.display = 'block';
+        
+        // Dapatkan data teknisi yang dipilih
+        const selectedTech = teknisiData.find(tech => tech.id === selectedTechId);
+        
+        // Update pesan terima kasih dengan nama teknisi
+        document.querySelector('.thank-you h3').textContent = `Terima Kasih Atas Ulasan untuk ${selectedTech.name}!`;
+      });
     });
   </script>
-
 </body>
 </html>

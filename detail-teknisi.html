@@ -1,261 +1,606 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profil Teknisi</title>
+  <title>Profil Teknisi - Reparo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #3b82f6;
+      --secondary: #f97316;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --light-gray: #e2e8f0;
+      --success: #10b981;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f6f8fa;
-      color: #333;
-      padding: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 0;
     }
+    
     .container {
-      max-width: 800px;
-      margin: auto;
-      background: white;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
     }
-    .profile {
-      text-align: center;
+    
+    /* Header Styles */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    .profile img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 4px solid #007BFF55;
-      object-fit: cover;
-    }
-    .profile h2 {
-      color: #007BFF;
-      margin: 10px 0 5px;
-    }
-    .stars {
-      color: #ffc107;
-      font-size: 18px;
-    }
-    .desc {
-      margin: 20px 0;
-      font-size: 15px;
-    }
-    .buttons {
+    
+    .nav-container {
       display: flex;
-      gap: 15px;
-      justify-content: center;
-      margin-bottom: 20px;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
-    .buttons button {
-      background-color: #007BFF;
-      color: white;
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .logo i {
+      font-size: 1.8rem;
+    }
+    
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--light);
+      color: var(--primary);
       border: none;
-      padding: 10px 20px;
-      font-size: 14px;
-      border-radius: 5px;
+      padding: 8px 15px;
+      border-radius: 50px;
+      font-weight: 600;
       cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .form-section {
-      display: none;
-      border-top: 1px solid #ddd;
-      margin-top: 20px;
-      padding-top: 20px;
-    }
-    form label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    form textarea {
-      resize: vertical;
-    }
-    form input[type="submit"] {
-      background-color: #007BFF;
+    
+    .back-btn:hover {
+      background: var(--primary);
       color: white;
-      border: none;
-      margin-top: 15px;
-      cursor: pointer;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
-
-    .review-section {
+    
+    /* Main Content */
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
       margin-top: 30px;
-      padding-top: 20px;
-      border-top: 1px solid #ddd;
+      width: 100%; /* Menambahkan lebar 100% untuk memastikan konten mengambil seluruh ruang */
     }
 
-    .review-card {
-      background-color: #f0f4ff;
-      padding: 15px;
-      border-radius: 8px;
+    /* Left Column */
+    .left-column {
+      width: 100%; /* Pastikan lebar kolom kiri menggunakan seluruh ruang */
+    }
+
+    /* Profile Card */
+    .profile-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+      width: 100%; /* Memastikan profile card memenuhi lebar yang tersedia */
+    }
+    
+    .profile-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .profile-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.3);
+      object-fit: cover;
+      margin: 0 auto 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .profile-name {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+    
+    .profile-rating {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
       margin-bottom: 15px;
     }
-
-    .review-card .stars {
+    
+    .rating-stars {
       color: #ffc107;
-      font-size: 16px;
+      font-size: 1.2rem;
     }
-
-    .review-card small {
-      color: #666;
-      font-size: 12px;
+    
+    .rating-value {
+      font-weight: 600;
+      background: rgba(255,255,255,0.2);
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.9rem;
     }
-
-    .btn-rating {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 15px;
-      background-color: #007BFF;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
+    
+    .profile-desc {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      opacity: 0.9;
     }
-
-    /* Styling for the list of technicians */
-    .tech-list {
+    
+    .profile-details {
+      padding: 25px;
+    }
+    
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .detail-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .detail-icon {
+      width: 45px;
+      height: 45px;
+      background: var(--light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+    
+    .detail-text h4 {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 3px;
+    }
+    
+    .detail-text p {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    
+    .specialization {
+      background: var(--light);
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+    
+    .specialization h3 {
+      margin-bottom: 10px;
+      color: var(--dark);
+      font-size: 1.1rem;
+    }
+    
+    .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 10px;
+    }
+    
+    .tag {
+      background: white;
+      border: 1px solid var(--light-gray);
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      color: var(--gray);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .tag.primary {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+    
+    .action-btn {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      margin-top: 20px;
-    }
-
-    .tech-box {
-      background-color: #fff;
-      border-radius: 10px;
+      gap: 10px;
       padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 200px;
-      text-align: center;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
-
-    .tech-box:hover {
-      transform: scale(1.05);
+    
+    .consult-btn {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
     }
-
-    .tech-box img {
-      width: 80px;
-      height: 80px;
+    
+    .book-btn {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+    }
+    
+    .action-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    }
+    
+    .action-btn:active {
+      transform: translateY(1px);
+    }
+    
+    /* Form Styles */
+    .form-container {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      display: none;
+    }
+    
+    .form-container.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .form-title {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .form-title i {
+      background: var(--light);
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      margin-bottom: 10px;
-      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
     }
-
-    .tech-box h3 {
-      margin: 10px 0;
-      color: #007BFF;
+    
+    .form-group {
+      margin-bottom: 20px;
     }
-
-    .tech-box .stars {
-      color: #ffc107;
-      font-size: 16px;
-      margin: 5px 0;
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--dark);
+      font-size: 0.95rem;
     }
-
-    .tech-box p {
-      font-size: 14px;
-      color: #555;
+    
+    .input-with-icon {
+      position: relative;
+    }
+    
+    .input-with-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 14px 14px 14px 45px;
+      border: 1px solid var(--light-gray);
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: var(--light);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    textarea.form-control {
+      min-height: 120px;
+      padding-left: 15px;
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+    }
+    
+    /* Success Message */
+    #booking-success {
+      display: none;
+      background: var(--success);
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <i class="fas fa-tools"></i>
+        <span>Reparo</span>
+      </a>
+      <button class="back-btn" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i>
+        Kembali
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
   <div class="container">
-    <div class="profile">
-      <img id="foto" src="" alt="Foto Teknisi">
-      <h2 id="nama">Nama Teknisi</h2>
-      <div class="stars" id="rating">★★★★★</div>
-      <p class="desc" id="deskripsi">
-        Deskripsi teknisi akan muncul di sini...
-      </p>
-    </div>
-
-    <div class="buttons">
-      <button onclick="toggleForm('konsultasi')">Konsultasi</button>
-      <button onclick="toggleForm('booking')">Booking</button>
-    </div>
-
-    <div class="form-section" id="form-konsultasi">
-      <h3>Form Konsultasi</h3>
-      <form>
-        <label>Nama</label>
-        <input type="text" required>
-        <label>No. HP</label>
-        <input type="text" required>
-        <label>Pesan</label>
-        <textarea rows="4" required></textarea>
-        <input type="submit" value="Kirim Konsultasi">
-      </form>
-    </div>
-
-    <div class="form-section" id="form-booking">
-      <h3>Form Booking</h3>
-      <form>
-        <label>Nama</label>
-        <input type="text" required>
-        <label>No. HP</label>
-        <input type="text" required>
-        <label>Alamat</label>
-        <textarea rows="2" required></textarea>
-        <label>Barang yang ingin diperbaiki</label>
-        <input type="text" required>
-        <input type="submit" value="Pesan Teknisi">
-      </form>
-    </div>
-  </div>
-
-  <div class="review-section">
-    <h3>Ulasan Pengguna</h3>
-
-    <div class="review-card">
-      <div class="stars">★★★★☆</div>
-      <p>"Teknisinya sangat cepat dan komunikatif, AC saya langsung normal!"</p>
-      <small>– Andi, 28 Mei 2025</small>
-    </div>
-
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p>"Servis kulkasnya bagus dan harganya terjangkau."</p>
-      <small>– Rina, 26 Mei 2025</small>
-    </div>
-
-    <a href="beri-ulasan.html?id=agus" class="btn-rating">Berikan Ulasan</a>
-  </div>
-
-  <div class="tech-list">
-    <div class="tech-box" data-kategori="mesin_cuci" onclick="window.location.href='detail-teknisi.html?id=sari'">
-      <img src="https://randomuser.me/api/portraits/women/12.jpg">
-      <h3>Sari Amelia</h3>
-      <div class="stars">★★★★★</div>
-      <p>Spesialis Mesin Cuci - Bandung</p>
-    </div>
-    <div class="tech-box" data-kategori="tv" onclick="window.location.href='detail-teknisi.html?id=wawan'">
-      <img src="https://randomuser.me/api/portraits/men/13.jpg">
-      <h3>Wawan Saputra</h3>
-      <div class="stars">★★★☆☆</div>
-      <p>Spesialis TV - Tangerang</p>
-    </div>
-    <div class="tech-box" data-kategori="laptop" onclick="window.location.href='detail-teknisi.html?id=vita'">
-      <img src="https://randomuser.me/api/portraits/women/14.jpg">
-      <h3>Vita Oktaviani</h3>
-      <div class="stars">★★★★★</div>
-      <p>Spesialis Laptop - Bekasi</p>
-    </div>
-    <div class="tech-box" data-kategori="ac" onclick="window.location.href='detail-teknisi.html?id=bayu'">
-      <img src="https://randomuser.me/api/portraits/men/15.jpg">
-      <h3>Bayu Fadillah</h3>
-      <div class="stars">★★★★☆</div>
-      <p>Spesialis AC - Bogor</p>
-    </div>
+    <div class="main-content">
+      <!-- Left Column -->
+      <div class="left-column">
+        <!-- Profile Card -->
+        <div class="profile-card">
+          <div class="profile-header">
+            <img id="foto" class="profile-img" src="https://randomuser.me/api/portraits/men/41.jpg" alt="Foto Teknisi">
+            <h1 class="profile-name" id="nama">Wawan Saputra</h1>
+            <div class="profile-rating">
+              <div class="rating-stars" id="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="rating-value">4.5</span>
+            </div>
+            <p class="profile-desc" id="deskripsi">
+              Spesialis TV: perbaikan layar, suara, dan gangguan sinyal. Berpengalaman di Tangerang dan sekitarnya.
+            </p>
+          </div>
+          
+          <div class="profile-details">
+            <div class="detail-grid">
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="detail-text">
+                  <h4>Lokasi</h4>
+                  <p>Tangerang, Banten</p>
+                </div>
+              </div>
+              
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="detail-text">
+                  <h4>Pengalaman</h4>
+                  <p>8 Tahun</p>
+                </div>
+              </div>
+              
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fas fa-tv"></i>
+                </div>
+                <div class="detail-text">
+                  <h4>Spesialisasi</h4>
+                  <p>Perangkat TV</p>
+                </div>
+              </div>
+              
+              <div class="detail-item">
+                <div class="detail-icon">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="detail-text">
+                  <h4>Proyek Selesai</h4>
+                  <p>320+</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="action-btn consult-btn">
+            <i class="fas fa-comments"></i>
+            <a id="chatLink" href="#" style="text-decoration: none; color: inherit;">
+              Chat Sekarang
+            </a>
+          </button>
+          <button class="action-btn book-btn" onclick="toggleForm('booking')">
+            <i class="fas fa-calendar-check"></i>
+            Booking Jadwal
+          </button>
+        </div>
+        
+        <!-- Consultation Form -->
+        <div id="form-konsultasi" class="form-container">
+          <h2 class="form-title">
+            <i class="fas fa-comment-dots"></i>
+            Form Konsultasi
+          </h2>
+          <form>
+            <div class="form-group">
+              <label for="consult-name">Nama Lengkap</label>
+              <div class="input-with-icon">
+                <i class="fas fa-user"></i>
+                <input type="text" id="consult-name" class="form-control" placeholder="Masukkan nama Anda" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="consult-phone">Nomor Handphone</label>
+              <div class="input-with-icon">
+                <i class="fas fa-phone"></i>
+                <input type="tel" id="consult-phone" class="form-control" placeholder="Contoh: 081234567890" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="consult-message">Pertanyaan/Keluhan</label>
+              <textarea id="consult-message" class="form-control" placeholder="Jelaskan keluhan atau pertanyaan Anda" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-paper-plane"></i>
+              Kirim Konsultasi
+            </button>
+          </form>
+        </div>
+        
+        <!-- Booking Form -->
+        <div id="form-booking" class="form-container">
+          <h2 class="form-title">
+            <i class="fas fa-calendar-alt"></i>
+            Form Booking
+          </h2>
+          <form>
+            <div class="form-group">
+              <label for="book-name">Nama Lengkap</label>
+              <div class="input-with-icon">
+                <i class="fas fa-user"></i>
+                <input type="text" id="book-name" class="form-control" placeholder="Masukkan nama Anda" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="book-phone">Nomor Handphone</label>
+              <div class="input-with-icon">
+                <i class="fas fa-phone"></i>
+                <input type="tel" id="book-phone" class="form-control" placeholder="Contoh: 081234567890" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="book-address">Alamat Lengkap</label>
+              <textarea id="book-address" class="form-control" placeholder="Masukkan alamat lengkap untuk perbaikan" required></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="book-device">Perangkat yang Akan Diperbaiki</label>
+              <div class="input-with-icon">
+                <i class="fas fa-tv"></i>
+                <input type="text" id="book-device" class="form-control" placeholder="Contoh: TV Samsung 32 inch" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="book-date">Tanggal Perbaikan</label>
+              <div class="input-with-icon">
+                <i class="fas fa-calendar-day"></i>
+                <input type="date" id="book-date" class="form-control" required>
+              </div>
+            </div>
+            
+            <button type="submit" class="submit-btn" onclick="showBookingSuccess()">
+              <i class="fas fa-check-circle"></i>
+              Pesan Teknisi
+            </button>
+          </form>
+        </div>
+        
+        <!-- Success Message -->
+        <div id="booking-success" style="display: none; background: var(--success); color: white; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center;">
+          Pesan Teknisi Berhasil!
+        </div>
+        
+      </div>
   </div>
 
   <script>
@@ -263,47 +608,122 @@
       budi: {
         nama: "Budi Santoso",
         foto: "https://randomuser.me/api/portraits/men/10.jpg",
-        rating: "★★★★★",
+        rating: "4.8",
         deskripsi: "Spesialis kulkas: perbaikan kompresor, freon, sistem pendingin. Berpengalaman 10+ tahun di Jakarta."
       },
       agus: {
         nama: "Agus Pratama",
         foto: "https://randomuser.me/api/portraits/men/11.jpg",
-        rating: "★★★★☆",
+        rating: "4.5",
         deskripsi: "Teknisi AC handal: isi freon, servis unit indoor/outdoor. Area Depok dan sekitarnya."
       },
       sari: {
         nama: "Sari Amelia",
         foto: "https://randomuser.me/api/portraits/women/12.jpg",
-        rating: "★★★★★",
+        rating: "4.9",
         deskripsi: "Spesialis mesin cuci otomatis dan manual. Layanan cepat dan terpercaya di Bandung."
       },
       vita: {
         nama: "Vita Oktaviani",
         foto: "https://randomuser.me/api/portraits/women/14.jpg",
-        rating: "★★★★★",
+        rating: "4.9",
         deskripsi: "Ahli servis laptop: layar, keyboard, software ringan. Lokasi Bekasi."
+      },
+      wawan: {
+        nama: "Wawan Saputra",
+        foto: "https://randomuser.me/api/portraits/men/41.jpg",
+        rating: "4.5",
+        deskripsi: "Spesialis TV: perbaikan layar, suara, dan gangguan sinyal. Berpengalaman di Tangerang."
+      },
+      bayu: {
+        nama: "Bayu Fadillah",
+        foto: "https://randomuser.me/api/portraits/men/19.jpg",
+        rating: "4.6",
+        deskripsi: "Spesialis AC: instalasi, servis, dan perbaikan unit AC. Layanan di Bogor dan sekitarnya."
       }
     };
 
+    // Get technician ID from URL
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
     const data = teknisiData[id];
 
+    // Update profile with technician data
     if (data) {
       document.getElementById("nama").textContent = data.nama;
       document.getElementById("foto").src = data.foto;
-      document.getElementById("rating").textContent = data.rating;
       document.getElementById("deskripsi").textContent = data.deskripsi;
+      
+      // Update rating stars
+      const rating = parseFloat(data.rating);
+      const starsContainer = document.getElementById("rating");
+      starsContainer.innerHTML = '';
+      
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('i');
+        if (i <= Math.floor(rating)) {
+          star.className = 'fas fa-star';
+        } else if (i - 0.5 <= rating) {
+          star.className = 'fas fa-star-half-alt';
+        } else {
+          star.className = 'far fa-star';
+        }
+        starsContainer.appendChild(star);
+      }
+      
+      // Update rating value
+      document.querySelector('.rating-value').textContent = data.rating;
     } else {
-      document.querySelector(".container").innerHTML = "<p>Teknisi tidak ditemukan.</p>";
+      document.querySelector(".profile-card").innerHTML = `
+        <div class="profile-header">
+          <h1 class="profile-name">Teknisi Tidak Ditemukan</h1>
+          <p class="profile-desc">Maaf, teknisi yang Anda cari tidak ditemukan.</p>
+        </div>
+      `;
     }
+
+    // Update Chat link dynamically
+    const chatLink = document.getElementById("chatLink");
+    chatLink.href = `chat.html?id=${id}`; // Set dynamic link based on tech ID
 
     function toggleForm(type) {
-      document.getElementById("form-konsultasi").style.display = (type === "konsultasi") ? "block" : "none";
-      document.getElementById("form-booking").style.display = (type === "booking") ? "block" : "none";
+      // Hide both forms first
+      document.getElementById("form-konsultasi").classList.remove('active');
+      document.getElementById("form-booking").classList.remove('active');
+      
+      // Show the selected form
+      document.getElementById(`form-${type}`).classList.add('active');
+      
+      // Scroll to the form
+      document.getElementById(`form-${type}`).scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start'
+      });
     }
-  </script>
 
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const formattedDate = tomorrow.toISOString().split('T')[0];
+    document.getElementById('book-date').value = formattedDate;
+    document.getElementById('book-date').min = formattedDate;
+
+    function showBookingSuccess() {
+      const successMessage = document.getElementById('booking-success');
+      
+      successMessage.style.display = 'block';
+
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 3000);
+    }
+
+    document.querySelector('#form-booking form').addEventListener('submit', function (e) {
+      e.preventDefault(); 
+
+      showBookingSuccess();
+
+      document.getElementById('form-booking').reset();
+    });
+  </script>
 </body>
 </html>
